@@ -2,7 +2,7 @@
 
 import { navLinks } from "@/constants";
 import { useState, useEffect } from "react";
-import { logo, menu, close } from "@/assets";
+import { logo, menu, close } from "../../public/assets";
 import Image from "next/image";
 import Link from "next/link";
 import { styles } from "../styles";
