@@ -20,12 +20,26 @@ export default function Navbar() {
       } else {
         setScrolled(false);
       }
+
+      navLinks.forEach((nav) => {
+        const section = document.querySelector(`#${nav.id}`);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+            setActive(nav.title);
+          } else {
+            setActive("")
+          }
+        }
+      });
     };
+
+    handleScroll()
 
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [navLinks]);
 
   return (
     <div
@@ -35,7 +49,7 @@ export default function Navbar() {
     >
       <div className="flex-1">
         <Link
-          href="/"
+          href="#"
           className="flex items-center gap-2"
           onClick={() => {
             setActive("");
@@ -59,7 +73,7 @@ export default function Navbar() {
               } hover:text-white text-[18px] font-medium cursor-pointer`}
               onClick={() => setActive(nav.title)}
             >
-              <a href={`#${nav.id}`}>{nav.title}</a>
+              <Link href={`#${nav.id}`}>{nav.title}</Link>
             </li>
           ))}
         </ul>
